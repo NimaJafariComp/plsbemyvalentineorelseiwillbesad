@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Kitkat, Will You Be My Valentine?</title>
+  <title>Kat, Will You Be My Valentine?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     /* ----- Reset & Base Styles ----- */
@@ -47,11 +47,11 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 35px 20px 20px;;
+      padding: 45px 20px 20px;;
     }
     #landingPage h1 {
       font-size: 2.5em;
-      margin-top: 35px;
+      margin-top: 45px;
     }
     /* Use a reliable placeholder image for the KitKat chocolate bar.
        Replace the URL with your preferred image if needed. */
@@ -59,7 +59,7 @@
       max-width: 400px;
       width: 80%;
       display: block;
-      margin: 10px auto;
+      margin: 8px auto;
     }
     .button-container {
       position: relative;
@@ -254,7 +254,7 @@
     heart.style.fontSize = `${size}px`;
     
     // Random animation duration between 4s and 8s
-    const duration = Math.random() * 4 + 4;
+    const duration = Math.random() * 4 + 8;
     heart.style.animationDuration = duration + 's';
     
     heartsContainer.appendChild(heart);
@@ -267,7 +267,7 @@
       createHeart();
     }
     // Continuously spawn hearts every 150ms
-    setInterval(createHeart, 120);
+    setInterval(createHeart, 100);
 
     /* ----- Dodging "No" Button ----- */
     const noBtn = document.getElementById('noBtn');
