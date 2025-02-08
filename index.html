@@ -84,10 +84,10 @@
     }
 
     /* ----- Media Queries for Mobile ----- */
-    @media (max-width: 600px) {
+    @media (max-width: 300px) {
       .btn {
         padding: 10px 15px; /* Smaller padding */
-        font-size: 2em; /* Smaller font size */
+        font-size: 1em; /* Smaller font size */
       }
       #landingPage h1 {
         font-size: 2em; /* Smaller heading size */
@@ -362,7 +362,6 @@
         .then(response => {
         if (response.ok) {
             // Handle successful response
-            alert('Form submitted successfully!');
             showFinalPage(); // Call your final page function here
         } else {
             // Handle errors
