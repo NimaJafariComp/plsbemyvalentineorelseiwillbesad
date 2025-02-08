@@ -12,6 +12,7 @@
       background-color: #E6E6FA; /* Light purple */
       font-family: 'Comic Sans MS', cursive, sans-serif;
       position: relative;
+      text-align: center; /* Centralizes text */
     }
 
     /* ----- Floating Hearts Background ----- */
@@ -45,15 +46,13 @@
     #landingPage {
       position: relative;
       z-index: 1;
-      text-align: center;
       padding: 20px;
     }
     #landingPage h1 {
       font-size: 2.5em;
       margin-top: 20px;
     }
-    /* Use a reliable placeholder image for the KitKat chocolate bar.
-       Replace the URL with your preferred image if needed. */
+    /* Use a reliable placeholder image for the KitKat chocolate bar. */
     #landingPage img.kitkat {
       max-width: 400px;
       width: 80%;
@@ -82,8 +81,7 @@
       position: absolute;
     }
 
-    /* ----- Animated GIFs ----- */
-    /* Running Cat (Bottom) */
+    /* ----- Running Cat Animation ----- */
     .cat-run {
       position: fixed;
       bottom: 10px;
@@ -102,27 +100,43 @@
         transform: scaleX(1);
       }
     }
-    /* Bouncing Panda (Top Left) */
-    .panda {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      width: 150px;
-      animation: pandaBounce 4s ease-in-out infinite;
+
+    /* ----- Spread GIFs ----- */
+    .gif {
+      width: 200px; /* Increased size */
+      position: absolute;
       z-index: 2;
     }
+    .panda {
+      top: 10px;
+      left: 10px;
+      animation: pandaBounce 4s ease-in-out infinite;
+    }
+    .kitten {
+      top: 10px;
+      right: 10px;
+      animation: kittenDance 3s ease-in-out infinite;
+    }
+    .dog {
+      bottom: 100px;
+      left: 200px;
+    }
+    .bear {
+      bottom: 50px;
+      right: 150px;
+    }
+    .unicorn {
+      top: 100px;
+      left: 300px;
+    }
+    .fox {
+      top: 200px;
+      right: 100px;
+    }
+    
     @keyframes pandaBounce {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-20px); }
-    }
-    /* Dancing Kitten (Top Right) */
-    .kitten {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      width: 150px;
-      animation: kittenDance 3s ease-in-out infinite;
-      z-index: 2;
     }
     @keyframes kittenDance {
       0%, 100% { transform: translateY(0); }
@@ -212,7 +226,7 @@
   <!-- Landing Page -->
   <div id="landingPage">
     <h1>Kitkat, Will You Be My Valentine?</h1>
-    <!-- KitKat chocolate bar image (replace URL if needed) -->
+    <!-- KitKat chocolate bar image -->
     <img class="kitkat" src="https://via.placeholder.com/400x300.png?text=KitKat+Chocolate+Bar" alt="KitKat Chocolate Bar">
     <div class="button-container">
       <button id="yesBtn" class="btn">Yes</button>
@@ -220,13 +234,16 @@
     </div>
   </div>
 
-  <!-- Animated GIFs -->
-  <!-- Running Cat -->
-  <img class="cat-run" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Running Cat">
-  <!-- Bouncing Panda -->
-  <img class="panda" src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXY3YTBxazllMWJsZXBsOGRlbWFvYW0zZDhhMDhpZHcycndmaWxociZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tpVKvAabWt3G5csMkT/giphy.gif" alt="Bouncing Panda">
-  <!-- Dancing Kitten -->
-  <img class="kitten" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Dancing Kitten">
+  <!-- Floating Cat Animation -->
+  <div class="cat-run"></div>
+
+  <!-- Spread GIFs -->
+  <img class="gif panda" src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXY3YTBxazllMWJsZXBsOGRlbWFvYW0zZDhhMDhpZHcycndmaWxociZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tpVKvAabWt3G5csMkT/giphy.gif" alt="Bouncing Panda">
+  <img class="gif kitten" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Dancing Kitten">
+  <img class="gif dog" src="https://media.giphy.com/media/3oEjI6SIIHBm7Gv0Ty/giphy.gif" alt="Running Dog">
+  <img class="gif bear" src="https://media.giphy.com/media/l0IylgP6jHcHIVQ20/giphy.gif" alt="Bear">
+  <img class="gif unicorn" src="https://media.giphy.com/media/1h8gB6cQHGTfo/giphy.gif" alt="Unicorn">
+  <img class="gif fox" src="https://media.giphy.com/media/l2JdUMV8dfclGz56A/giphy.gif" alt="Fox">
 
   <!-- Celebration Form Page (Hidden by Default) -->
   <div id="celebrationPage"></div>
@@ -241,120 +258,34 @@
       const heart = document.createElement('div');
       heart.classList.add('heart');
       heart.textContent = "❤";
-      // Random position across the viewport
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.top = Math.random() * window.innerHeight + 'px';
-      // Random duration between 4s and 8s
-      const duration = Math.random() * 4 + 4;
-      heart.style.animationDuration = duration + 's';
+      // Randomize position and size
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+      heart.style.animationDuration = Math.random() * 5 + 3 + 's';
       heartsContainer.appendChild(heart);
-      // Remove heart after its animation completes
-      setTimeout(() => heart.remove(), duration * 1000);
-    }
-    // Initial burst of hearts
-    for (let i = 0; i < 50; i++) {
-      createHeart();
-    }
-    // Continuously spawn hearts every 150ms
-    setInterval(createHeart, 150);
-
-    /* ----- Dodging "No" Button ----- */
-    const noBtn = document.getElementById('noBtn');
-    noBtn.addEventListener('mouseover', dodgeButton);
-    noBtn.addEventListener('touchstart', dodgeButton);
-    function dodgeButton(e) {
-      const container = document.querySelector('.button-container');
-      const rect = container.getBoundingClientRect();
-      const btnW = noBtn.offsetWidth;
-      const btnH = noBtn.offsetHeight;
-      const newLeft = Math.random() * (rect.width - btnW);
-      const newTop = Math.random() * (rect.height - btnH);
-      noBtn.style.position = 'absolute';
-      noBtn.style.left = newLeft + 'px';
-      noBtn.style.top = newTop + 'px';
-    }
-
-    /* ----- Yes Button & Celebration Form ----- */
-    const yesBtn = document.getElementById('yesBtn');
-    yesBtn.addEventListener('click', showCelebrationForm);
-    function showCelebrationForm() {
-      // Hide landing page
-      document.getElementById('landingPage').style.display = 'none';
-      // Build the celebration form page
-      const celebrationPage = document.getElementById('celebrationPage');
-      celebrationPage.style.display = 'block';
-      celebrationPage.innerHTML = `
-        <div class="celebration-form">
-          <h2>Yay! Let's plan our day, Kitkat!</h2>
-          <form id="valentineForm">
-            <label><input type="checkbox" name="activity" value="small dinner"> Small Dinner</label>
-            <label><input type="checkbox" name="activity" value="froyo"> Froyo</label>
-            <label><input type="checkbox" name="activity" value="ice cream"> Ice Cream</label>
-            <label><input type="checkbox" name="activity" value="hot coco"> Hot Coco</label>
-            <label><input type="checkbox" name="activity" value="coffee"> Coffee</label>
-            <label><input type="checkbox" name="activity" value="sweets"> Sweets</label>
-            <label><input type="checkbox" name="activity" value="drinks"> Drinks</label>
-            <label>
-              Gift?
-              <select name="gift">
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-              </select>
-            </label>
-            <p style="font-weight: bold; color: #D2691E;">Flowers are non-negotiable!</p>
-            <label>
-              Any other ideas:
-              <input type="text" name="other" placeholder="Your idea here">
-            </label>
-            <button type="submit">Submit</button>
-          </form>
-        </div>
-      `;
-      // Handle form submission
-      document.getElementById('valentineForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        let response = {};
-        formData.forEach((value, key) => {
-          if(response[key]) {
-            if(Array.isArray(response[key])) {
-              response[key].push(value);
-            } else {
-              response[key] = [response[key], value];
-            }
-          } else {
-            response[key] = value;
-          }
-        });
-        // Save response in localStorage (or send to a backend)
-        localStorage.setItem('kitkatResponse', JSON.stringify(response));
-        showFinalPage();
+      // Remove heart after animation
+      heart.addEventListener('animationend', () => {
+        heart.remove();
       });
     }
+    setInterval(createHeart, 500);
 
-    /* ----- Final Celebration Page with Confetti ----- */
-    function showFinalPage() {
-      document.getElementById('celebrationPage').style.display = 'none';
-      const finalPage = document.getElementById('finalPage');
-      finalPage.style.display = 'block';
-      finalPage.innerHTML = `
-        <h1>alrighty then love u pookie</h1>
-        <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Two Cats Hugging" style="max-width:400px;">
-      `;
-      startConfetti();
-    }
-    function startConfetti() {
-      const confettiCount = 100;
-      const finalPage = document.getElementById('finalPage');
-      for (let i = 0; i < confettiCount; i++) {
-        let confetti = document.createElement('div');
-        confetti.classList.add('confetti');
-        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-        confetti.style.left = Math.random() * window.innerWidth + 'px';
-        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-        finalPage.appendChild(confetti);
-      }
-    }
+    /* ----- Button Logic ----- */
+    document.getElementById('yesBtn').addEventListener('click', () => {
+      alert('Yay! I can\'t wait to celebrate together!');
+    });
+    document.getElementById('noBtn').addEventListener('click', () => {
+      alert('Oh no! Why not? I\'ll keep trying!'); 
+      // Make the button dodge randomly
+      const dodge = () => {
+        const x = Math.random() * 80 + 10; // Random X position
+        const y = Math.random() * 80 + 10; // Random Y position
+        document.getElementById('noBtn').style.left = x + 'vw';
+        document.getElementById('noBtn').style.top = y + 'vh';
+      };
+      dodge();
+      setInterval(dodge, 1000);
+    });
   </script>
 </body>
 </html>
