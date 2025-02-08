@@ -5,195 +5,339 @@
   <title>Kitkat, Will You Be My Valentine?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    /* Overall page styling */
+    /* Basic Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { overflow-x: hidden; }
+
+    /* Body styling */
     body {
-      background-color: #E6E6FA; /* light purple / lavender */
-      font-family: Arial, sans-serif;
-      text-align: center;
+      background-color: #E6E6FA; /* light purple */
+      font-family: 'Comic Sans MS', cursive, sans-serif;
       color: #333;
-      margin: 0;
+      position: relative;
+    }
+
+    /* Floating Hearts Background */
+    #hearts-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .heart {
+      position: absolute;
+      color: rgba(255, 0, 0, 0.7);
+      font-size: 20px;
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(0.5);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* Landing Page */
+    #landingPage {
+      text-align: center;
       padding: 20px;
       position: relative;
-      overflow-x: hidden;
+      z-index: 1;
     }
-    #container {
-      max-width: 600px;
-      margin: 0 auto;
+    #landingPage h1 {
+      font-size: 2em;
+      margin-top: 20px;
     }
-    h1, h2 {
-      margin: 20px 0;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 1.2em;
-      margin: 10px;
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
-      background-color: #9370DB; /* a shade of purple */
-      color: white;
-      transition: background-color 0.3s;
-    }
-    button:hover {
-      background-color: #7A5CC0;
-    }
-    /* Style for the dodging “No” button */
-    #noButton {
-      position: relative;
-    }
-    /* Running cat animation */
-    @keyframes cat-run {
-      0%   { right: -120px; }
-      100% { right: 100%; }
-    }
-    .cat-run {
-      position: absolute;
-      bottom: 20px;
-      right: -120px;
-      width: 100px;
-      animation: cat-run 5s linear infinite;
-    }
-    /* Celebration mode animation (example confetti spin) */
-    .celebration {
-      animation: confetti 2s infinite;
-    }
-    @keyframes confetti {
-      0%   { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    /* Form styling */
-    form {
-      text-align: left;
+    #landingPage img {
+      max-width: 200px;
+      display: block;
       margin: 20px auto;
-      max-width: 400px;
-      background: rgba(255, 255, 255, 0.8);
-      padding: 15px;
+    }
+    .button-container {
+      position: relative;
+      margin: 20px;
+    }
+    .btn {
+      padding: 15px 25px;
+      margin: 10px;
+      font-size: 1.2em;
+      background: #9370DB;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+    }
+    /* The “No” button will dodge */
+    .dodging {
+      position: absolute;
+    }
+
+    /* Running Cat Animation */
+    .cat-run {
+      position: fixed;
+      bottom: 10px;
+      width: 120px;
+      animation: catRun 6s linear infinite;
+      z-index: 2;
+    }
+    @keyframes catRun {
+      0% {
+        left: 100%;
+        transform: scaleX(1);
+      }
+      100% {
+        left: -150px;
+        transform: scaleX(1);
+      }
+    }
+
+    /* Bouncing Panda Animation */
+    .panda {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      width: 100px;
+      animation: pandaBounce 4s ease-in-out infinite;
+      z-index: 2;
+    }
+    @keyframes pandaBounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(20px);
+      }
+    }
+
+    /* Celebration Form */
+    #celebrationPage {
+      display: none;
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+    }
+    .celebration-form {
+      max-width: 500px;
+      margin: 20px auto;
+      background: rgba(255,255,255,0.9);
       border-radius: 10px;
+      padding: 20px;
+      text-align: left;
     }
-    form p, form input, form select, form label {
-      font-size: 1em;
+    .celebration-form h2 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .celebration-form label {
+      display: block;
       margin: 10px 0;
+      font-size: 1.1em;
     }
-    form input[type="text"] {
+    .celebration-form input[type="text"] {
       width: 100%;
-      padding: 8px;
+      padding: 10px;
+      margin-top: 5px;
       border-radius: 5px;
       border: 1px solid #ccc;
+    }
+    .celebration-form button {
+      padding: 10px 20px;
+      font-size: 1em;
+      background: #9370DB;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto;
+    }
+
+    /* Final Celebration Page */
+    #finalPage {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    #finalPage h1 {
+      margin-bottom: 20px;
+      font-size: 2em;
+    }
+    /* Confetti Pieces */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #fff;
+      opacity: 0.9;
+      transform: rotate(45deg);
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      0% {
+        top: -10px;
+        opacity: 1;
+      }
+      100% {
+        top: 100vh;
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
-  <div id="container">
-    <!-- Title and greeting -->
+  <!-- Floating hearts background -->
+  <div id="hearts-container"></div>
+
+  <!-- Landing Page -->
+  <div id="landingPage">
     <h1>Kitkat, Will You Be My Valentine?</h1>
     <!-- KitKat chocolate image -->
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/KitKat_Chocolate_Bar.jpg/800px-KitKat_Chocolate_Bar.jpg" 
-         alt="KitKat Chocolate" style="max-width:200px; margin: 10px auto; display: block;">
-    <!-- Yes and No buttons -->
-    <div>
-      <button id="yesButton">Yes</button>
-      <button id="noButton">No</button>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/KitKat_Chocolate_Bar.jpg/800px-KitKat_Chocolate_Bar.jpg" alt="KitKat Chocolate">
+    <div class="button-container">
+      <button id="yesBtn" class="btn">Yes</button>
+      <button id="noBtn" class="btn dodging">No</button>
     </div>
   </div>
 
-  <!-- Running cat animation (sample gif) -->
+  <!-- Animated Running Cat -->
   <img src="https://media.giphy.com/media/Lq0h93752f6J9tijrh/giphy.gif" alt="Running Cat" class="cat-run">
-  <!-- Cute panda gif in a fixed position -->
-  <img src="https://media.giphy.com/media/11sBLVxNs7v6WA/giphy.gif" alt="Cute Panda" style="position: fixed; top: 10px; left: 10px; width: 100px;">
+  <!-- Animated Bouncing Panda -->
+  <img src="https://media.giphy.com/media/26AHG5KGFxSkUWwLe/giphy.gif" alt="Bouncing Panda" class="panda">
+
+  <!-- Celebration Form Page (hidden by default) -->
+  <div id="celebrationPage"></div>
+
+  <!-- Final Celebration Page (hidden by default) -->
+  <div id="finalPage"></div>
 
   <script>
-    // Dodging behavior for the "No" button on desktop and mobile
-    const noButton = document.getElementById('noButton');
-    noButton.addEventListener('mouseover', function(e) {
-      const container = document.getElementById('container');
-      const containerRect = container.getBoundingClientRect();
-      const newLeft = Math.random() * (containerRect.width - noButton.offsetWidth);
-      const newTop = Math.random() * (containerRect.height - noButton.offsetHeight);
-      noButton.style.position = 'absolute';
-      noButton.style.left = newLeft + 'px';
-      noButton.style.top = newTop + 'px';
-    });
-    noButton.addEventListener('touchstart', function(e) {
-      e.preventDefault();
-      const container = document.getElementById('container');
-      const containerRect = container.getBoundingClientRect();
-      const newLeft = Math.random() * (containerRect.width - noButton.offsetWidth);
-      const newTop = Math.random() * (containerRect.height - noButton.offsetHeight);
-      noButton.style.position = 'absolute';
-      noButton.style.left = newLeft + 'px';
-      noButton.style.top = newTop + 'px';
-    });
+    // ----- Background Floating Hearts -----
+    const heartsContainer = document.getElementById('hearts-container');
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = "❤";
+      const size = Math.random() * 16 + 16; // 16px to 32px
+      heart.style.fontSize = size + 'px';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      const duration = Math.random() * 4 + 4; // 4s to 8s
+      heart.style.animationDuration = duration + 's';
+      heartsContainer.appendChild(heart);
+      // Remove heart after its animation duration
+      setTimeout(() => heart.remove(), duration * 1000);
+    }
+    setInterval(createHeart, 500);
 
-    // Handler for the "Yes" button click
-    const yesButton = document.getElementById('yesButton');
-    yesButton.addEventListener('click', function() {
-      // Clear the initial container content
-      document.getElementById('container').innerHTML = '';
-      
-      // Create celebration mode content with a form for activity choices
-      const celebrationDiv = document.createElement('div');
-      celebrationDiv.id = 'celebrationMode';
-      celebrationDiv.className = 'celebration';
-      celebrationDiv.innerHTML = `
-        <h1>Yay! Let's plan our day, Kitkat!</h1>
-        <form id="responseForm">
-          <p><strong>Select the activities you'd like:</strong></p>
-          <label><input type="checkbox" name="activities" value="dinner"> Small Dinner</label><br>
-          <label><input type="checkbox" name="activities" value="froyo"> Froyo</label><br>
-          <label><input type="checkbox" name="activities" value="icecream"> Ice Cream</label><br>
-          <label><input type="checkbox" name="activities" value="hotcoco"> Hot Coco</label><br>
-          <label><input type="checkbox" name="activities" value="coffee"> Coffee</label><br>
-          <label><input type="checkbox" name="activities" value="sweets"> Sweets</label><br>
-          <label><input type="checkbox" name="activities" value="drinks"> Drinks</label><br>
-          <p>
-            <label>Gift? 
+    // ----- Dodging "No" Button -----
+    const noBtn = document.getElementById('noBtn');
+    noBtn.addEventListener('mouseover', dodgeButton);
+    noBtn.addEventListener('touchstart', dodgeButton);
+    function dodgeButton(e) {
+      const container = document.querySelector('.button-container');
+      const rect = container.getBoundingClientRect();
+      const btnW = noBtn.offsetWidth;
+      const btnH = noBtn.offsetHeight;
+      const newLeft = Math.random() * (rect.width - btnW);
+      const newTop = Math.random() * (rect.height - btnH);
+      noBtn.style.position = 'absolute';
+      noBtn.style.left = newLeft + 'px';
+      noBtn.style.top = newTop + 'px';
+    }
+
+    // ----- Yes Button & Transition to Celebration Form -----
+    const yesBtn = document.getElementById('yesBtn');
+    yesBtn.addEventListener('click', showCelebrationForm);
+    function showCelebrationForm() {
+      // Hide landing page
+      document.getElementById('landingPage').style.display = 'none';
+      // Build the celebration form
+      const celebrationPage = document.getElementById('celebrationPage');
+      celebrationPage.style.display = 'block';
+      celebrationPage.innerHTML = `
+        <div class="celebration-form">
+          <h2>Yay! Let's plan our day, Kitkat!</h2>
+          <form id="valentineForm">
+            <label><input type="checkbox" name="activity" value="small dinner"> Small Dinner</label>
+            <label><input type="checkbox" name="activity" value="froyo"> Froyo</label>
+            <label><input type="checkbox" name="activity" value="ice cream"> Ice Cream</label>
+            <label><input type="checkbox" name="activity" value="hot coco"> Hot Coco</label>
+            <label><input type="checkbox" name="activity" value="coffee"> Coffee</label>
+            <label><input type="checkbox" name="activity" value="sweets"> Sweets</label>
+            <label><input type="checkbox" name="activity" value="drinks"> Drinks</label>
+            <label>
+              Gift? 
               <select name="gift">
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
               </select>
             </label>
-          </p>
-          <p><em>Flowers are non-negotiable!</em></p>
-          <p><strong>Any other ideas?</strong></p>
-          <input type="text" name="other" placeholder="Your idea here">
-          <br><br>
-          <button type="submit">Submit</button>
-        </form>
+            <p style="font-weight: bold; color: #D2691E;">Flowers are non-negotiable!</p>
+            <label>
+              Any other ideas:
+              <input type="text" name="other" placeholder="Your idea here">
+            </label>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
       `;
-      // Replace the body content with the celebration mode content
-      document.body.innerHTML = '';
-      document.body.appendChild(celebrationDiv);
-      
-      // When the form is submitted, save the response and show the final message
-      document.getElementById('responseForm').addEventListener('submit', function(e) {
+      // Handle form submission
+      document.getElementById('valentineForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const formData = new FormData(e.target);
-        let data = {};
+        let response = {};
         formData.forEach((value, key) => {
-          if(data[key]) {
-            if(Array.isArray(data[key])) {
-              data[key].push(value);
+          if(response[key]) {
+            if(Array.isArray(response[key])) {
+              response[key].push(value);
             } else {
-              data[key] = [data[key], value];
+              response[key] = [response[key], value];
             }
           } else {
-            data[key] = value;
+            response[key] = value;
           }
         });
-        // For demonstration, we save the response in localStorage.
-        // For a production system, you could send this data to a backend (e.g., via Formspree, Firebase, etc.)
-        localStorage.setItem('kitkatResponse', JSON.stringify(data));
-        
-        // Display the final celebration message with two cats hugging
-        document.body.innerHTML = `
-          <div style="text-align: center; padding: 20px;">
-            <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" 
-                 alt="Two Cats Hugging" style="max-width:300px; margin-bottom: 20px;">
-            <h2>alrighty then love u pookie</h2>
-          </div>
-        `;
+        // Save the response (for later retrieval or sending to a backend)
+        localStorage.setItem('kitkatResponse', JSON.stringify(response));
+        showFinalPage();
       });
-    });
+    }
+
+    // ----- Final Celebration Page with Confetti -----
+    function showFinalPage() {
+      document.getElementById('celebrationPage').style.display = 'none';
+      const finalPage = document.getElementById('finalPage');
+      finalPage.style.display = 'block';
+      finalPage.innerHTML = `
+        <h1>alrighty then love u pookie</h1>
+        <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Two Cats Hugging" style="max-width:300px;">
+      `;
+      startConfetti();
+    }
+    function startConfetti() {
+      const confettiCount = 50;
+      const finalPage = document.getElementById('finalPage');
+      for(let i = 0; i < confettiCount; i++){
+        let confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        finalPage.appendChild(confetti);
+      }
+    }
   </script>
 </body>
 </html>
