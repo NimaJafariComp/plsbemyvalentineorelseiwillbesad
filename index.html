@@ -9,7 +9,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; height: 100%; overflow-x: hidden; }
     body {
-      background-color: #bdadd1; /* Light purple */
+      background-color: #cbb4e6; /* Light purple */
       font-family: 'Comic Sans MS', cursive, sans-serif;
       position: relative;
       padding-top: 30px;
@@ -69,7 +69,7 @@
       padding: 15px 25px;
       margin: 10px;
       font-size: 1.2em;
-      background: #672079;
+      background: #732f85;
       color: #fff;
       border: none;
       border-radius: 8px;
@@ -213,7 +213,7 @@
 
   <!-- Landing Page -->
   <div id="landingPage">
-    <h1>Kitkat, Will You Be My Valentine?</h1>
+    <h1>Kat, Will You Be My Valentine?</h1>
     <!-- KitKat chocolate bar image (replace URL if needed) -->
     <img class="kitkat" src="pngegg.png" alt="KitKat Chocolate Bar">
     <div class="button-container">
@@ -296,8 +296,9 @@
       celebrationPage.style.display = 'block';
       celebrationPage.innerHTML = `
         <div class="celebration-form">
-          <h2>Yay! Let's plan our day, Kitkat!</h2>
-          <form id="valentineForm">
+          <h2>Yay! Let's plan our day, Kat!</h2>
+          <form id="valentineForm" action="https://formspree.io/f/xkgozvel" method="POST">
+            <input type="hidden" name="_replyto" value="nima.jafari.614@my.csun.edu">
             <label><input type="checkbox" name="activity" value="small dinner"> Small Dinner</label>
             <label><input type="checkbox" name="activity" value="froyo"> Froyo</label>
             <label><input type="checkbox" name="activity" value="ice cream"> Ice Cream</label>
