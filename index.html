@@ -47,11 +47,11 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 30px 20px 20px;;
+      padding: 35px 20px 20px;;
     }
     #landingPage h1 {
       font-size: 2.5em;
-      margin-top: 30px;
+      margin-top: 35px;
     }
     /* Use a reliable placeholder image for the KitKat chocolate bar.
        Replace the URL with your preferred image if needed. */
@@ -59,7 +59,7 @@
       max-width: 400px;
       width: 80%;
       display: block;
-      margin: 20px auto;
+      margin: 10px auto;
     }
     .button-container {
       position: relative;
@@ -250,7 +250,7 @@
     heart.style.top = Math.random() * window.innerHeight + 'px';
     
     // Random size for variety
-    const size = Math.random() * 30 + 10; // Size between 10px and 40px
+    const size = Math.random() * 30 + 20; // Size between 10px and 40px
     heart.style.fontSize = `${size}px`;
     
     // Random animation duration between 4s and 8s
@@ -263,11 +263,11 @@
     setTimeout(() => heart.remove(), duration * 1000);
     }
     // Initial burst of hearts
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 70; i++) {
       createHeart();
     }
     // Continuously spawn hearts every 150ms
-    setInterval(createHeart, 150);
+    setInterval(createHeart, 120);
 
     /* ----- Dodging "No" Button ----- */
     const noBtn = document.getElementById('noBtn');
