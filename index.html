@@ -314,41 +314,89 @@
     // Continuously spawn hearts every 150ms
     setInterval(createHeart, 100);
 
-    /* ----- Dodging "No" Button ----- */
+    /* ----- Revised Dodging "No" Button Logic ----- */
     const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+
+    // Prevent accidental clicking if it happens (just in case)
+    noBtn.addEventListener('click', (e) => e.preventDefault());
+
+    // Use both mouse and touch events
     noBtn.addEventListener('mouseover', dodgeButton);
     noBtn.addEventListener('touchstart', dodgeButton);
+
     function dodgeButton(e) {
-      const container = document.querySelector('.button-container');
-      const rect = container.getBoundingClientRect();
-      const btnW = noBtn.offsetWidth;
-      const btnH = noBtn.offsetHeight;
-      const yesRect = document.getElementById('yesBtn').getBoundingClientRect();
+      e.preventDefault(); // Prevent the event from triggering a click
 
+      const offset = Math.floor(Math.random() * (60 - 20 + 1)) + 50; // How far away from the Yes button to be
+      const noWidth = noBtn.offsetWidth;
+      const noHeight = noBtn.offsetHeight;
+      
+      // Get the Yes button's position relative to the viewport.
+      const yesRect = yesBtn.getBoundingClientRect();
+      
       let newLeft, newTop;
-      let collision = true; // Variable to check for collision
+      let attempts = 0;
+      const maxAttempts = 10; // Try a few times to find a spot that doesn't collide
+      let foundFreeSpot = false;
 
-      while (collision) {
-        newLeft = Math.random() * (rect.width - btnW);
-        newTop = Math.random() * (rect.height - btnH);
-
-        // Check for collision with "Yes" button with a buffer of 10px
-        collision = !(
-          newLeft + btnW + 300 < yesRect.left || // No right overlap
-          newLeft > yesRect.right + 300 ||        // No left overlap
-          newTop + btnH + 300 < yesRect.top ||    // No bottom overlap
-          newTop > yesRect.bottom + 300            // No top overlap
-        );
+      while (!foundFreeSpot && attempts < maxAttempts) {
+        attempts++;
+        // Randomly choose one of four directions relative to the Yes button:
+        const direction = Math.floor(Math.random() * 4);
+        
+        if (direction === 0) { // above the Yes button
+          newLeft = yesRect.left + (yesRect.width - noWidth) / 2;
+          newTop = yesRect.top - offset - noHeight;
+        } else if (direction === 1) { // below the Yes button
+          newLeft = yesRect.left + (yesRect.width - noWidth) / 2;
+          newTop = yesRect.bottom + offset;
+        } else if (direction === 2) { // left of the Yes button
+          newLeft = yesRect.left - offset - noWidth;
+          newTop = yesRect.top + (yesRect.height - noHeight) / 2;
+        } else if (direction === 3) { // right of the Yes button
+          newLeft = yesRect.right + offset;
+          newTop = yesRect.top + (yesRect.height - noHeight) / 2;
+        }
+        
+        // Make sure the new coordinates are within the viewport.
+        if (newLeft < 0) newLeft = 0;
+        if (newTop < 0) newTop = 0;
+        if (newLeft + noWidth > window.innerWidth) {
+          newLeft = window.innerWidth - noWidth;
+        }
+        if (newTop + noHeight > window.innerHeight) {
+          newTop = window.innerHeight - noHeight;
+        }
+        
+        // Define the rectangle for the No button at the new position.
+        const noRect = {
+          left: newLeft,
+          top: newTop,
+          right: newLeft + noWidth,
+          bottom: newTop + noHeight
+        };
+        
+        // Check for collision with the Yes button.
+        // (No collision if the No button is completely to the left, right, above, or below the Yes button.)
+        if (
+          noRect.right < yesRect.left ||
+          noRect.left > yesRect.right ||
+          noRect.bottom < yesRect.top ||
+          noRect.top > yesRect.bottom
+        ) {
+          foundFreeSpot = true;
+        }
       }
-
-      noBtn.style.position = 'absolute';
+      
+      // Use fixed positioning so that the No button moves relative to the viewport.
+      noBtn.style.position = 'fixed';
       noBtn.style.left = newLeft + 'px';
       noBtn.style.top = newTop + 'px';
     }
 
 
     /* ----- Yes Button & Celebration Form ----- */
-    const yesBtn = document.getElementById('yesBtn');
     yesBtn.addEventListener('click', showCelebrationForm);
 
     function showCelebrationForm() {
