@@ -5,19 +5,16 @@
   <title>Kitkat, Will You Be My Valentine?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    /* Basic Reset */
+    /* ----- Reset & Base Styles ----- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html { overflow-x: hidden; }
-
-    /* Body styling */
+    html, body { width: 100%; height: 100%; overflow-x: hidden; }
     body {
-      background-color: #E6E6FA; /* light purple */
+      background-color: #E6E6FA; /* Light purple */
       font-family: 'Comic Sans MS', cursive, sans-serif;
-      color: #333;
       position: relative;
     }
 
-    /* Floating Hearts Background */
+    /* ----- Floating Hearts Background ----- */
     #hearts-container {
       position: fixed;
       top: 0;
@@ -30,8 +27,8 @@
     .heart {
       position: absolute;
       color: rgba(255, 0, 0, 0.7);
-      font-size: 20px;
-      animation: floatUp linear infinite;
+      font-size: 24px;
+      animation: floatUp linear forwards;
     }
     @keyframes floatUp {
       0% {
@@ -39,24 +36,27 @@
         opacity: 1;
       }
       100% {
-        transform: translateY(-100vh) scale(1.2);
+        transform: translateY(-150vh) scale(1.2);
         opacity: 0;
       }
     }
 
-    /* Landing Page */
+    /* ----- Landing Page ----- */
     #landingPage {
-      text-align: center;
-      padding: 20px;
       position: relative;
       z-index: 1;
+      text-align: center;
+      padding: 20px;
     }
     #landingPage h1 {
-      font-size: 2em;
+      font-size: 2.5em;
       margin-top: 20px;
     }
-    #landingPage img {
-      max-width: 200px;
+    /* Use a reliable placeholder image for the KitKat chocolate bar.
+       Replace the URL with your preferred image if needed. */
+    #landingPage img.kitkat {
+      max-width: 400px;
+      width: 80%;
       display: block;
       margin: 20px auto;
     }
@@ -78,16 +78,17 @@
     .btn:hover {
       transform: scale(1.05);
     }
-    /* The “No” button will dodge */
     .dodging {
       position: absolute;
     }
 
-    /* Running Cat Animation */
+    /* ----- Animated GIFs ----- */
+    /* Running Cat (Bottom) */
     .cat-run {
       position: fixed;
       bottom: 10px;
-      width: 120px;
+      left: 0;
+      width: 200px;
       animation: catRun 6s linear infinite;
       z-index: 2;
     }
@@ -97,30 +98,38 @@
         transform: scaleX(1);
       }
       100% {
-        left: -150px;
+        left: -250px;
         transform: scaleX(1);
       }
     }
-
-    /* Bouncing Panda Animation */
+    /* Bouncing Panda (Top Left) */
     .panda {
       position: fixed;
       top: 10px;
       left: 10px;
-      width: 100px;
+      width: 150px;
       animation: pandaBounce 4s ease-in-out infinite;
       z-index: 2;
     }
     @keyframes pandaBounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(20px);
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    /* Dancing Kitten (Top Right) */
+    .kitten {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      width: 150px;
+      animation: kittenDance 3s ease-in-out infinite;
+      z-index: 2;
+    }
+    @keyframes kittenDance {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
     }
 
-    /* Celebration Form */
+    /* ----- Celebration Form ----- */
     #celebrationPage {
       display: none;
       position: relative;
@@ -163,7 +172,7 @@
       margin: 20px auto;
     }
 
-    /* Final Celebration Page */
+    /* ----- Final Celebration Page ----- */
     #finalPage {
       display: none;
       text-align: center;
@@ -175,7 +184,6 @@
       margin-bottom: 20px;
       font-size: 2em;
     }
-    /* Confetti Pieces */
     .confetti {
       position: absolute;
       width: 10px;
@@ -198,50 +206,59 @@
   </style>
 </head>
 <body>
-  <!-- Floating hearts background -->
+  <!-- Floating Hearts Background -->
   <div id="hearts-container"></div>
 
   <!-- Landing Page -->
   <div id="landingPage">
     <h1>Kitkat, Will You Be My Valentine?</h1>
-    <!-- KitKat chocolate image -->
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/KitKat_Chocolate_Bar.jpg/800px-KitKat_Chocolate_Bar.jpg" alt="KitKat Chocolate">
+    <!-- KitKat chocolate bar image (replace URL if needed) -->
+    <img class="kitkat" src="https://via.placeholder.com/400x300.png?text=KitKat+Chocolate+Bar" alt="KitKat Chocolate Bar">
     <div class="button-container">
       <button id="yesBtn" class="btn">Yes</button>
       <button id="noBtn" class="btn dodging">No</button>
     </div>
   </div>
 
-  <!-- Animated Running Cat -->
-  <img src="https://media.giphy.com/media/Lq0h93752f6J9tijrh/giphy.gif" alt="Running Cat" class="cat-run">
-  <!-- Animated Bouncing Panda -->
-  <img src="https://media.giphy.com/media/26AHG5KGFxSkUWwLe/giphy.gif" alt="Bouncing Panda" class="panda">
+  <!-- Animated GIFs -->
+  <!-- Running Cat -->
+  <img class="cat-run" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Running Cat">
+  <!-- Bouncing Panda -->
+  <img class="panda" src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXY3YTBxazllMWJsZXBsOGRlbWFvYW0zZDhhMDhpZHcycndmaWxociZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tpVKvAabWt3G5csMkT/giphy.gif" alt="Bouncing Panda">
+  <!-- Dancing Kitten -->
+  <img class="kitten" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Dancing Kitten">
 
-  <!-- Celebration Form Page (hidden by default) -->
+  <!-- Celebration Form Page (Hidden by Default) -->
   <div id="celebrationPage"></div>
 
-  <!-- Final Celebration Page (hidden by default) -->
+  <!-- Final Celebration Page (Hidden by Default) -->
   <div id="finalPage"></div>
 
   <script>
-    // ----- Background Floating Hearts -----
+    /* ----- Floating Hearts Logic ----- */
     const heartsContainer = document.getElementById('hearts-container');
     function createHeart() {
       const heart = document.createElement('div');
       heart.classList.add('heart');
       heart.textContent = "❤";
-      const size = Math.random() * 16 + 16; // 16px to 32px
-      heart.style.fontSize = size + 'px';
+      // Random position across the viewport
       heart.style.left = Math.random() * window.innerWidth + 'px';
-      const duration = Math.random() * 4 + 4; // 4s to 8s
+      heart.style.top = Math.random() * window.innerHeight + 'px';
+      // Random duration between 4s and 8s
+      const duration = Math.random() * 4 + 4;
       heart.style.animationDuration = duration + 's';
       heartsContainer.appendChild(heart);
-      // Remove heart after its animation duration
+      // Remove heart after its animation completes
       setTimeout(() => heart.remove(), duration * 1000);
     }
-    setInterval(createHeart, 500);
+    // Initial burst of hearts
+    for (let i = 0; i < 50; i++) {
+      createHeart();
+    }
+    // Continuously spawn hearts every 150ms
+    setInterval(createHeart, 150);
 
-    // ----- Dodging "No" Button -----
+    /* ----- Dodging "No" Button ----- */
     const noBtn = document.getElementById('noBtn');
     noBtn.addEventListener('mouseover', dodgeButton);
     noBtn.addEventListener('touchstart', dodgeButton);
@@ -257,13 +274,13 @@
       noBtn.style.top = newTop + 'px';
     }
 
-    // ----- Yes Button & Transition to Celebration Form -----
+    /* ----- Yes Button & Celebration Form ----- */
     const yesBtn = document.getElementById('yesBtn');
     yesBtn.addEventListener('click', showCelebrationForm);
     function showCelebrationForm() {
       // Hide landing page
       document.getElementById('landingPage').style.display = 'none';
-      // Build the celebration form
+      // Build the celebration form page
       const celebrationPage = document.getElementById('celebrationPage');
       celebrationPage.style.display = 'block';
       celebrationPage.innerHTML = `
@@ -278,7 +295,7 @@
             <label><input type="checkbox" name="activity" value="sweets"> Sweets</label>
             <label><input type="checkbox" name="activity" value="drinks"> Drinks</label>
             <label>
-              Gift? 
+              Gift?
               <select name="gift">
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
@@ -309,27 +326,27 @@
             response[key] = value;
           }
         });
-        // Save the response (for later retrieval or sending to a backend)
+        // Save response in localStorage (or send to a backend)
         localStorage.setItem('kitkatResponse', JSON.stringify(response));
         showFinalPage();
       });
     }
 
-    // ----- Final Celebration Page with Confetti -----
+    /* ----- Final Celebration Page with Confetti ----- */
     function showFinalPage() {
       document.getElementById('celebrationPage').style.display = 'none';
       const finalPage = document.getElementById('finalPage');
       finalPage.style.display = 'block';
       finalPage.innerHTML = `
         <h1>alrighty then love u pookie</h1>
-        <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Two Cats Hugging" style="max-width:300px;">
+        <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Two Cats Hugging" style="max-width:400px;">
       `;
       startConfetti();
     }
     function startConfetti() {
-      const confettiCount = 50;
+      const confettiCount = 100;
       const finalPage = document.getElementById('finalPage');
-      for(let i = 0; i < confettiCount; i++){
+      for (let i = 0; i < confettiCount; i++) {
         let confetti = document.createElement('div');
         confetti.classList.add('confetti');
         confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
