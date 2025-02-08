@@ -323,8 +323,24 @@
       const rect = container.getBoundingClientRect();
       const btnW = noBtn.offsetWidth;
       const btnH = noBtn.offsetHeight;
-      const newLeft = Math.random() * (rect.width - btnW);
-      const newTop = Math.random() * (rect.height - btnH);
+
+      let newLeft, newTop;
+      let collision = true; // Variable to check for collision
+
+      while (collision) {
+        newLeft = Math.random() * (rect.width - btnW);
+        newTop = Math.random() * (rect.height - btnH);
+
+        // Check for collision with "Yes" button
+        const yesRect = document.getElementById('yesBtn').getBoundingClientRect();
+        collision = !(
+          newLeft + btnW < yesRect.left || // No right overlap
+          newLeft > yesRect.right ||        // No left overlap
+          newTop + btnH < yesRect.top ||    // No bottom overlap
+          newTop > yesRect.bottom           // No top overlap
+        );
+      }
+
       noBtn.style.position = 'absolute';
       noBtn.style.left = newLeft + 'px';
       noBtn.style.top = newTop + 'px';
