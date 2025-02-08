@@ -1,194 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Be My Valentine?</title>
-  <!-- Google Fonts for a playful look -->
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Kitkat, Will You Be My Valentine?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    /* Global Styles */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    /* Overall page styling */
     body {
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #E6E6FA, #D8BFD8); /* soft light purple shades */
-      overflow-x: hidden;
-      position: relative;
-      min-height: 100vh;
-    }
-    .container {
+      background-color: #E6E6FA; /* light purple / lavender */
+      font-family: Arial, sans-serif;
       text-align: center;
-      padding: 50px 20px;
+      color: #333;
+      margin: 0;
+      padding: 20px;
       position: relative;
+      overflow-x: hidden;
     }
-    h1 {
-      font-family: 'Pacifico', cursive;
-      color: #8A2BE2; /* a lovely purple */
-      font-size: 2.8em;
-      margin-bottom: 20px;
+    #container {
+      max-width: 600px;
+      margin: 0 auto;
     }
-    .button-container {
-      margin: 30px 0;
-      position: relative;
-      height: 60px; /* Reserve space for buttons */
+    h1, h2 {
+      margin: 20px 0;
     }
     button {
+      padding: 10px 20px;
       font-size: 1.2em;
-      padding: 12px 24px;
-      border: none;
+      margin: 10px;
       cursor: pointer;
-      border-radius: 8px;
-      transition: transform 0.2s ease, background 0.2s ease;
+      border: none;
+      border-radius: 5px;
+      background-color: #9370DB; /* a shade of purple */
+      color: white;
+      transition: background-color 0.3s;
     }
     button:hover {
-      transform: scale(1.05);
+      background-color: #7A5CC0;
     }
-    .yes {
-      background-color: #9370DB; /* medium purple */
-      color: #fff;
+    /* Style for the dodging “No” button */
+    #noButton {
+      position: relative;
     }
-    .no {
-      background-color: #aaa;
-      color: #fff;
+    /* Running cat animation */
+    @keyframes cat-run {
+      0%   { right: -120px; }
+      100% { right: 100%; }
+    }
+    .cat-run {
       position: absolute;
-      top: 0;
-      left: 0;
+      bottom: 20px;
+      right: -120px;
+      width: 100px;
+      animation: cat-run 5s linear infinite;
     }
-    /* Date Ideas Section */
-    .date-options {
-      display: none;
-      margin-top: 40px;
-      animation: fadeIn 1s ease-in-out forwards;
+    /* Celebration mode animation (example confetti spin) */
+    .celebration {
+      animation: confetti 2s infinite;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    @keyframes confetti {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
-    .date-options h2 {
-      font-family: 'Pacifico', cursive;
-      color: #6A5ACD;
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
-    .option-list {
-      list-style: none;
-      padding: 0;
+    /* Form styling */
+    form {
+      text-align: left;
       margin: 20px auto;
       max-width: 400px;
-    }
-    .option-list li {
-      background: #fff;
-      margin: 10px 0;
+      background: rgba(255, 255, 255, 0.8);
       padding: 15px;
       border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      font-size: 1.1em;
     }
-    .gift-option {
-      margin-top: 20px;
-      font-size: 1.2em;
+    form p, form input, form select, form label {
+      font-size: 1em;
+      margin: 10px 0;
     }
-    .gift-option label {
-      margin: 0 15px;
-      cursor: pointer;
-    }
-    .flowers {
-      margin-top: 20px;
-      font-size: 1.5em;
-      color: #8A2BE2;
-      font-weight: bold;
-    }
-    /* GIFs and Decorative Graphics */
-    .gif-container {
-      margin-top: 30px;
-    }
-    .gif-container img {
-      width: 150px;
-      height: auto;
-      margin: 10px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-    .heart {
-      position: absolute;
-      font-size: 2em;
-      animation: float 5s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
+    form input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>(Kitkat), will you be my Valentine? 💖</h1>
-    
-    <div class="button-container">
-      <button class="yes" id="yesButton">Yes</button>
-      <button class="no" id="noButton">No</button>
+  <div id="container">
+    <!-- Title and greeting -->
+    <h1>Kitkat, Will You Be My Valentine?</h1>
+    <!-- KitKat chocolate image -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/KitKat_Chocolate_Bar.jpg/800px-KitKat_Chocolate_Bar.jpg" 
+         alt="KitKat Chocolate" style="max-width:200px; margin: 10px auto; display: block;">
+    <!-- Yes and No buttons -->
+    <div>
+      <button id="yesButton">Yes</button>
+      <button id="noButton">No</button>
     </div>
-
-    <!-- Date Ideas Section (hidden until Yes is clicked) -->
-    <div class="date-options" id="dateOptions">
-      <h2>Awesome! Let’s plan our perfect day:</h2>
-      <ul class="option-list">
-        <li>🍽️ A cozy dinner together</li>
-        <li>🍦 Froyo & Ice Cream date</li>
-        <li>☕ Hot Coco & Coffee moments</li>
-        <li>🍭 Sweets & refreshing drinks</li>
-      </ul>
-      <div class="gift-option">
-        Would you like gifts? 
-        <label><input type="radio" name="gifts" value="yes"> Yes</label>
-        <label><input type="radio" name="gifts" value="no"> No</label>
-      </div>
-      <div class="flowers">
-        And remember… flowers are <span style="color:#6A5ACD;">NON NEGOTIABLE</span>!
-      </div>
-    </div>
-    
-    <!-- Cute Cat and Panda GIFs -->
-    <div class="gif-container">
-      <img src="https://media.giphy.com/media/J1ABRhlfvQNwIOsDmn/giphy.gif" alt="Cute Cat">
-      <img src="https://media.giphy.com/media/5ftsmLIqktHQA/giphy.gif" alt="Cute Panda">
-    </div>
-    
-    <!-- Floating Decorative Hearts -->
-    <div class="heart" style="top:10%; left:5%;">❤️</div>
-    <div class="heart" style="top:20%; right:10%;">❤️</div>
-    <div class="heart" style="bottom:15%; left:20%;">❤️</div>
-    <div class="heart" style="bottom:10%; right:15%;">❤️</div>
   </div>
 
+  <!-- Running cat animation (sample gif) -->
+  <img src="https://media.giphy.com/media/Lq0h93752f6J9tijrh/giphy.gif" alt="Running Cat" class="cat-run">
+  <!-- Cute panda gif in a fixed position -->
+  <img src="https://media.giphy.com/media/11sBLVxNs7v6WA/giphy.gif" alt="Cute Panda" style="position: fixed; top: 10px; left: 10px; width: 100px;">
+
   <script>
-    // Make the "No" button dodge the mouse cursor
-    const noButton = document.getElementById("noButton");
-    noButton.addEventListener("mouseover", function() {
-      // Get the container dimensions
-      const container = document.querySelector('.container');
+    // Dodging behavior for the "No" button on desktop and mobile
+    const noButton = document.getElementById('noButton');
+    noButton.addEventListener('mouseover', function(e) {
+      const container = document.getElementById('container');
       const containerRect = container.getBoundingClientRect();
-      const maxX = containerRect.width - noButton.offsetWidth;
-      const maxY = containerRect.height - noButton.offsetHeight;
-      const randomX = Math.random() * maxX;
-      const randomY = Math.random() * maxY;
-      noButton.style.left = randomX + "px";
-      noButton.style.top = randomY + "px";
+      const newLeft = Math.random() * (containerRect.width - noButton.offsetWidth);
+      const newTop = Math.random() * (containerRect.height - noButton.offsetHeight);
+      noButton.style.position = 'absolute';
+      noButton.style.left = newLeft + 'px';
+      noButton.style.top = newTop + 'px';
+    });
+    noButton.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      const container = document.getElementById('container');
+      const containerRect = container.getBoundingClientRect();
+      const newLeft = Math.random() * (containerRect.width - noButton.offsetWidth);
+      const newTop = Math.random() * (containerRect.height - noButton.offsetHeight);
+      noButton.style.position = 'absolute';
+      noButton.style.left = newLeft + 'px';
+      noButton.style.top = newTop + 'px';
     });
 
-    // Show the date ideas when "Yes" is clicked
-    const yesButton = document.getElementById("yesButton");
-    const dateOptions = document.getElementById("dateOptions");
-    yesButton.addEventListener("click", function() {
-      dateOptions.style.display = "block";
-      // Optionally hide the initial buttons after clicking Yes
-      document.querySelector('.button-container').style.display = "none";
+    // Handler for the "Yes" button click
+    const yesButton = document.getElementById('yesButton');
+    yesButton.addEventListener('click', function() {
+      // Clear the initial container content
+      document.getElementById('container').innerHTML = '';
+      
+      // Create celebration mode content with a form for activity choices
+      const celebrationDiv = document.createElement('div');
+      celebrationDiv.id = 'celebrationMode';
+      celebrationDiv.className = 'celebration';
+      celebrationDiv.innerHTML = `
+        <h1>Yay! Let's plan our day, Kitkat!</h1>
+        <form id="responseForm">
+          <p><strong>Select the activities you'd like:</strong></p>
+          <label><input type="checkbox" name="activities" value="dinner"> Small Dinner</label><br>
+          <label><input type="checkbox" name="activities" value="froyo"> Froyo</label><br>
+          <label><input type="checkbox" name="activities" value="icecream"> Ice Cream</label><br>
+          <label><input type="checkbox" name="activities" value="hotcoco"> Hot Coco</label><br>
+          <label><input type="checkbox" name="activities" value="coffee"> Coffee</label><br>
+          <label><input type="checkbox" name="activities" value="sweets"> Sweets</label><br>
+          <label><input type="checkbox" name="activities" value="drinks"> Drinks</label><br>
+          <p>
+            <label>Gift? 
+              <select name="gift">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </label>
+          </p>
+          <p><em>Flowers are non-negotiable!</em></p>
+          <p><strong>Any other ideas?</strong></p>
+          <input type="text" name="other" placeholder="Your idea here">
+          <br><br>
+          <button type="submit">Submit</button>
+        </form>
+      `;
+      // Replace the body content with the celebration mode content
+      document.body.innerHTML = '';
+      document.body.appendChild(celebrationDiv);
+      
+      // When the form is submitted, save the response and show the final message
+      document.getElementById('responseForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        let data = {};
+        formData.forEach((value, key) => {
+          if(data[key]) {
+            if(Array.isArray(data[key])) {
+              data[key].push(value);
+            } else {
+              data[key] = [data[key], value];
+            }
+          } else {
+            data[key] = value;
+          }
+        });
+        // For demonstration, we save the response in localStorage.
+        // For a production system, you could send this data to a backend (e.g., via Formspree, Firebase, etc.)
+        localStorage.setItem('kitkatResponse', JSON.stringify(data));
+        
+        // Display the final celebration message with two cats hugging
+        document.body.innerHTML = `
+          <div style="text-align: center; padding: 20px;">
+            <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" 
+                 alt="Two Cats Hugging" style="max-width:300px; margin-bottom: 20px;">
+            <h2>alrighty then love u pookie</h2>
+          </div>
+        `;
+      });
     });
   </script>
 </body>
 </html>
-
