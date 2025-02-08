@@ -288,19 +288,17 @@
     /* ----- Yes Button & Celebration Form ----- */
     const yesBtn = document.getElementById('yesBtn');
     yesBtn.addEventListener('click', showCelebrationForm);
+
     function showCelebrationForm() {
-      // Hide landing page
-      document.getElementById('landingPage').style.display = 'none';
-      // Build the celebration form page
-      const celebrationPage = document.getElementById('celebrationPage');
-      celebrationPage.style.display = 'block';
-      celebrationPage.innerHTML = `
+    // Hide landing page
+    document.getElementById('landingPage').style.display = 'none';
+    // Build the celebration form page
+    const celebrationPage = document.getElementById('celebrationPage');
+    celebrationPage.style.display = 'block';
+    celebrationPage.innerHTML = `
         <div class="celebration-form">
-          <h2>Yay! Let's plan our day, Kat!</h2>
-          <form
-          action="https://formspree.io/f/xkgozvel"
-          method="POST"
-          >
+        <h2>Yay! Let's plan our day, Kat!</h2>
+        <form id="valentineForm">
             <input type="hidden" name="_replyto" value="nima.jafari.614@my.csun.edu">
             <label><input type="checkbox" name="activity" value="small dinner"> Small Dinner</label>
             <label><input type="checkbox" name="activity" value="froyo"> Froyo</label>
@@ -310,41 +308,51 @@
             <label><input type="checkbox" name="activity" value="sweets"> Sweets</label>
             <label><input type="checkbox" name="activity" value="drinks"> Drinks</label>
             <label>
-              Gift?
-              <select name="gift">
+            Gift?
+            <select name="gift">
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
-              </select>
+            </select>
             </label>
             <p style="font-weight: bold; color: #D2691E;">Flowers, Kisses, and possibly Gifts are non-negotiable!</p>
             <label>
-              Any other ideas:
-              <input type="text" name="other" placeholder="Your idea here">
+            Any other ideas:
+            <input type="text" name="other" placeholder="Your idea here">
             </label>
             <button type="submit">Send</button>
-          </form>
+        </form>
         </div>
-      `;
-      // Handle form submission
-      document.getElementById('valentineForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        let response = {};
-        formData.forEach((value, key) => {
-          if(response[key]) {
-            if(Array.isArray(response[key])) {
-              response[key].push(value);
-            } else {
-              response[key] = [response[key], value];
-            }
-          } else {
-            response[key] = value;
-          }
+    `;
+
+    // Handle form submission
+    const form = document.getElementById('valentineForm');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent default form submission
+        const formData = new FormData(form);
+
+        // Send form data to Formspree using Fetch API
+        fetch('https://formspree.io/f/xkgozvel', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            Accept: 'application/json' // Accept JSON response
+        }
+        })
+        .then(response => {
+        if (response.ok) {
+            // Handle successful response
+            alert('Form submitted successfully!');
+            showFinalPage(); // Call your final page function here
+        } else {
+            // Handle errors
+            alert('There was a problem with your submission.');
+        }
+        })
+        .catch(error => {
+        console.error('Error:', error);
+        alert('There was an error submitting your form.');
         });
-        // Save response in localStorage (or send to a backend)
-        localStorage.setItem('kitkatResponse', JSON.stringify(response));
-        showFinalPage();
-      });
+    });
     }
 
     /* ----- Final Celebration Page with Confetti ----- */
