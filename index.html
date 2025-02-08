@@ -323,6 +323,7 @@
       const rect = container.getBoundingClientRect();
       const btnW = noBtn.offsetWidth;
       const btnH = noBtn.offsetHeight;
+      const yesRect = document.getElementById('yesBtn').getBoundingClientRect();
 
       let newLeft, newTop;
       let collision = true; // Variable to check for collision
@@ -331,13 +332,12 @@
         newLeft = Math.random() * (rect.width - btnW);
         newTop = Math.random() * (rect.height - btnH);
 
-        // Check for collision with "Yes" button
-        const yesRect = document.getElementById('yesBtn').getBoundingClientRect();
+        // Check for collision with "Yes" button with a buffer of 10px
         collision = !(
-          newLeft + btnW < yesRect.left || // No right overlap
-          newLeft > yesRect.right ||        // No left overlap
-          newTop + btnH < yesRect.top ||    // No bottom overlap
-          newTop > yesRect.bottom           // No top overlap
+          newLeft + btnW + 300 < yesRect.left || // No right overlap
+          newLeft > yesRect.right + 300 ||        // No left overlap
+          newTop + btnH + 300 < yesRect.top ||    // No bottom overlap
+          newTop > yesRect.bottom + 300            // No top overlap
         );
       }
 
@@ -345,6 +345,7 @@
       noBtn.style.left = newLeft + 'px';
       noBtn.style.top = newTop + 'px';
     }
+
 
     /* ----- Yes Button & Celebration Form ----- */
     const yesBtn = document.getElementById('yesBtn');
