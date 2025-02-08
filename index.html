@@ -88,20 +88,20 @@
     .cat-run {
       position: fixed;
       bottom: 10px;
-      left: 0;
+      left: -250px;
       width: 200px;
       animation: catRun 6s linear infinite;
       z-index: 2;
     }
     @keyframes catRun {
-      0% {
-        left: 100%;
+    0% {
+        left: -250px; /* Start off-screen on the left */
         transform: scaleX(1);
-      }
-      100% {
-        left: -250px;
+    }
+    100% {
+        left: 100%; /* End off-screen on the right */
         transform: scaleX(1);
-      }
+  }
     }
     /* Bouncing Panda (Top Left) */
     .panda {
