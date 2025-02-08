@@ -12,7 +12,7 @@
       background-color: #a98ecc; /* Light purple */
       font-family: 'Comic Sans MS', cursive, sans-serif;
       position: relative;
-      padding-top: 20px;
+      padding-top: 30px;
     }
 
     /* ----- Floating Hearts Background ----- */
@@ -69,7 +69,7 @@
       padding: 15px 25px;
       margin: 10px;
       font-size: 1.2em;
-      background: #9370DB;
+      background: #2cb87d;
       color: #fff;
       border: none;
       border-radius: 8px;
@@ -183,6 +183,7 @@
     }
     #finalPage h1 {
       margin-bottom: 20px;
+      margin-top: 30px;
       font-size: 2em;
     }
     .confetti {
@@ -239,18 +240,27 @@
     /* ----- Floating Hearts Logic ----- */
     const heartsContainer = document.getElementById('hearts-container');
     function createHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.textContent = "❤";
-      // Random position across the viewport
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.top = Math.random() * window.innerHeight + 'px';
-      // Random duration between 4s and 8s
-      const duration = Math.random() * 4 + 4;
-      heart.style.animationDuration = duration + 's';
-      heartsContainer.appendChild(heart);
-      // Remove heart after its animation completes
-      setTimeout(() => heart.remove(), duration * 1000);
+    const hearts = ["❤", "💖", "💕", "💗", "💓", "💞", "💘"];
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)]; // Random heart emoji
+    
+    // Random position across the viewport
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.top = Math.random() * window.innerHeight + 'px';
+    
+    // Random size for variety
+    const size = Math.random() * 30 + 10; // Size between 10px and 40px
+    heart.style.fontSize = `${size}px`;
+    
+    // Random animation duration between 4s and 8s
+    const duration = Math.random() * 4 + 4;
+    heart.style.animationDuration = duration + 's';
+    
+    heartsContainer.appendChild(heart);
+    
+    // Remove heart after animation completes
+    setTimeout(() => heart.remove(), duration * 1000);
     }
     // Initial burst of hearts
     for (let i = 0; i < 50; i++) {
