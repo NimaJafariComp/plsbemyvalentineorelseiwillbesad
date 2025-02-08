@@ -206,6 +206,15 @@
       }
     }
 
+    /* ----- Hugging Cats GIF ----- */
+    .hugg {
+      width: 100%;
+      max-width: 600px;
+      display: block;
+      margin: auto;
+    }
+    
+
     /* ----- Mobile Styles ----- */
     @media (max-width: 600px) {
       #landingPage h1 {
@@ -219,13 +228,12 @@
         width: 60%; /* Ensure the KitKat image is responsive */
         max-width: 200px; /* Limit max width */
       }
-      .cat-run, .panda, .kitten  {
+      .cat-run, .panda, .kitten .hugg {
         width: 90px; /* Smaller GIFs for mobile */
       }
       .celebration-form {
-        width: 80%;
+        width: 60%;
         max-width: 300px;
-        max-height: 200px;
         margin: auto
       }
     }
@@ -387,24 +395,7 @@
       finalPage.style.display = 'block';
       finalPage.innerHTML = `
         <h1>Alrighty then love u pookie :))))</h1>
-        <img class="hugg" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" 
-     alt="Two Cats Hugging">
-        .hugg {
-          width: 100%;
-          width: 600px;
-          display: block;
-          margin: auto;
-        }
-        
-        @media (max-width: 600px) {
-          .hugg {
-            width: 70%;
-            width: 400px;
-            display: block;
-            margin: auto;
-        }
-    
-  
+        <img class="hugg" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Two Cats Hugging">
       `;
       startConfetti();
     }
