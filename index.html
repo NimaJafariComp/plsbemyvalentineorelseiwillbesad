@@ -88,7 +88,7 @@
       position: fixed;
       bottom: 10px;
       left: 0;
-      width: 200px;
+      width: 350px;
       animation: catRun 6s linear infinite;
       z-index: 2;
     }
@@ -105,9 +105,9 @@
     /* Bouncing Panda (Top Left) */
     .panda {
       position: fixed;
-      top: 10px;
-      left: 10px;
-      width: 150px;
+      top: 20px;
+      left: 20px;
+      width: 300px;
       animation: pandaBounce 4s ease-in-out infinite;
       z-index: 2;
     }
@@ -118,9 +118,9 @@
     /* Dancing Kitten (Top Right) */
     .kitten {
       position: fixed;
-      top: 10px;
-      right: 10px;
-      width: 150px;
+      top: 20px;
+      right: 20px;
+      width: 300px;
       animation: kittenDance 3s ease-in-out infinite;
       z-index: 2;
     }
@@ -226,7 +226,7 @@
   <!-- Bouncing Panda -->
   <img class="panda" src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXY3YTBxazllMWJsZXBsOGRlbWFvYW0zZDhhMDhpZHcycndmaWxociZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tpVKvAabWt3G5csMkT/giphy.gif" alt="Bouncing Panda">
   <!-- Dancing Kitten -->
-  <img class="kitten" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Dancing Kitten">
+  <img class="kitten" src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Dancing Kitten">
 
   <!-- Celebration Form Page (Hidden by Default) -->
   <div id="celebrationPage"></div>
@@ -339,7 +339,8 @@
       finalPage.style.display = 'block';
       finalPage.innerHTML = `
         <h1>alrighty then love u pookie</h1>
-        <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Two Cats Hugging" style="max-width:400px;">
+        <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Two Cats Hugging" style="max-width:400px;">
+        
       `;
       startConfetti();
     }
