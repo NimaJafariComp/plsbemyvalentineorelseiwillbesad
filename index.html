@@ -45,31 +45,30 @@
     /* ----- Landing Page ----- */
     #landingPage {
       position: relative;
-      font-size: 6vw;
       z-index: 1;
       text-align: center;
-      padding: 20px 20px 20px;
+      padding: 45px 20px 20px;;
     }
     #landingPage h1 {
-      font-size: 3vw;
-      margin-top: 40px;
+      font-size: 2.5em;
+      margin-top: 45px;
     }
     /* Use a reliable placeholder image for the KitKat chocolate bar.
        Replace the URL with your preferred image if needed. */
     #landingPage img.kitkat {
-      max-width: 300px;
-      width: 70%;
+      max-width: 400px;
+      width: 80%;
       display: block;
-      margin: auto;
+      margin: 8px auto;
     }
     .button-container {
       position: relative;
-      margin: 0px;
+      margin: 20px;
     }
     .btn {
       padding: 15px 25px;
-      margin: 0px;
-      font-size: 1vw;
+      margin: 10px;
+      font-size: 1.2em;
       background: #732f85;
       color: #fff;
       border: none;
@@ -84,15 +83,34 @@
       position: absolute;
     }
 
+    /* ----- Media Queries for Mobile ----- */
+    @media (max-width: 600px) {
+      .btn {
+        padding: 10px 15px; /* Smaller padding */
+        font-size: 1em; /* Smaller font size */
+      }
+      #landingPage h1 {
+        font-size: 2em; /* Smaller heading size */
+      }
+      .cat-run {
+        width: 50px; /* Smaller width for mobile */
+      }
+      .panda {
+        width: 50px; /* Smaller width for mobile */
+      }
+      .kitten {
+        width: 50px; /* Smaller width for mobile */
+      }
+    }
+
+
     /* ----- Animated GIFs ----- */
     /* Running Cat (Bottom) */
     .cat-run {
       position: fixed;
       bottom: 10px;
       left: -250px;
-      width: 100%; /* Full width */
-      max-width: 200px; /* Limit max width */
-      height: auto; /* Maintain aspect ratio */
+      width: 200px;
       animation: catRun 6s linear infinite;
       z-index: 2;
     }
@@ -111,9 +129,7 @@
       position: fixed;
       top: 20px;
       left: 20px;
-      width: 100%; /* Full width */
-      max-width: 300px; /* Limit max width */
-      height: auto; /* Maintain aspect ratio */
+      width: 300px;
       animation: pandaBounce 4s ease-in-out infinite;
       z-index: 2;
     }
@@ -126,9 +142,7 @@
       position: fixed;
       top: 20px;
       right: 20px;
-      width: 100%; /* Full width */
-      max-width: 300px; /* Limit max width */
-      height: auto; /* Maintain aspect ratio */
+      width: 300px;
       animation: kittenDance 3s ease-in-out infinite;
       z-index: 2;
     }
@@ -145,7 +159,7 @@
       padding: 30px 20px 20px;;
     }
     .celebration-form {
-      max-width: 50%;
+      max-width: 500px;
       margin: 20px auto;
       background: rgba(255,255,255,0.9);
       border-radius: 10px;
@@ -159,7 +173,7 @@
     .celebration-form label {
       display: block;
       margin: 10px 0;
-      font-size: 1vw;
+      font-size: 1.1em;
     }
     .celebration-form input[type="text"] {
       width: 100%;
@@ -169,9 +183,8 @@
       border: 1px solid #ccc;
     }
     .celebration-form button {
-      width: 100%; /* Full width button */
-      padding: 10px 20px; /* Increased padding for touch targets */
-      font-size: 1vw; /* Responsive font size */
+      padding: 10px 20px;
+      font-size: 1em;
       background: #9370DB;
       color: #fff;
       border: none;
@@ -192,7 +205,7 @@
     #finalPage h1 {
       margin-bottom: 20px;
       padding-top: 45px;
-      font-size: 2vw;
+      font-size: 2em;
     }
     .confetti {
       position: absolute;
@@ -252,21 +265,21 @@
     const heart = document.createElement('div');
     heart.classList.add('heart');
     heart.textContent = hearts[Math.floor(Math.random() * hearts.length)]; // Random heart emoji
-    
+
     // Random position across the viewport
     heart.style.left = Math.random() * window.innerWidth + 'px';
     heart.style.top = Math.random() * window.innerHeight + 'px';
-    
+
     // Random size for variety
     const size = Math.random() * 30 + 20; // Size between 10px and 40px
     heart.style.fontSize = `${size}px`;
-    
+
     // Random animation duration between 4s and 8s
     const duration = Math.random() * 4 + 8;
     heart.style.animationDuration = duration + 's';
-    
+
     heartsContainer.appendChild(heart);
-    
+
     // Remove heart after animation completes
     setTimeout(() => heart.remove(), duration * 1000);
     }
@@ -349,6 +362,7 @@
         .then(response => {
         if (response.ok) {
             // Handle successful response
+            alert('Form submitted successfully!');
             showFinalPage(); // Call your final page function here
         } else {
             // Handle errors
