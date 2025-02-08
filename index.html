@@ -83,27 +83,6 @@
       position: absolute;
     }
 
-    /* ----- Media Queries for Mobile ----- */
-    @media (max-width: 300px) {
-      .btn {
-        padding: 10px 15px; /* Smaller padding */
-        font-size: 1em; /* Smaller font size */
-      }
-      #landingPage h1 {
-        font-size: 2em; /* Smaller heading size */
-      }
-      .cat-run {
-        width: 50px; /* Smaller width for mobile */
-      }
-      .panda {
-        width: 10px; /* Smaller width for mobile */
-      }
-      .kitten {
-        width: 10px; /* Smaller width for mobile */
-      }
-    }
-
-
     /* ----- Animated GIFs ----- */
     /* Running Cat (Bottom) */
     .cat-run {
@@ -226,6 +205,25 @@
         opacity: 0;
       }
     }
+
+    /* ----- Mobile Styles ----- */
+    @media (max-width: 600px) {
+      #landingPage h1 {
+        font-size: 2em; /* Smaller font size for the heading */
+      }
+      .btn {
+        padding: 20px 30px; /* Increase button padding */
+        font-size: 1.5em; /* Larger font size for buttons */
+      }
+      #landingPage img.kitkat {
+        width: 90%; /* Ensure the KitKat image is responsive */
+        max-width: 350px; /* Limit max width */
+      }
+      .cat-run, .panda, .kitten {
+        width: 150px; /* Smaller GIFs for mobile */
+      }
+    }
+    
   </style>
 </head>
 <body>
