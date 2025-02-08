@@ -1,1 +1,194 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Be My Valentine?</title>
+  <!-- Google Fonts for a playful look -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #E6E6FA, #D8BFD8); /* soft light purple shades */
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+    .container {
+      text-align: center;
+      padding: 50px 20px;
+      position: relative;
+    }
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #8A2BE2; /* a lovely purple */
+      font-size: 2.8em;
+      margin-bottom: 20px;
+    }
+    .button-container {
+      margin: 30px 0;
+      position: relative;
+      height: 60px; /* Reserve space for buttons */
+    }
+    button {
+      font-size: 1.2em;
+      padding: 12px 24px;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    button:hover {
+      transform: scale(1.05);
+    }
+    .yes {
+      background-color: #9370DB; /* medium purple */
+      color: #fff;
+    }
+    .no {
+      background-color: #aaa;
+      color: #fff;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    /* Date Ideas Section */
+    .date-options {
+      display: none;
+      margin-top: 40px;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .date-options h2 {
+      font-family: 'Pacifico', cursive;
+      color: #6A5ACD;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .option-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px auto;
+      max-width: 400px;
+    }
+    .option-list li {
+      background: #fff;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      font-size: 1.1em;
+    }
+    .gift-option {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+    .gift-option label {
+      margin: 0 15px;
+      cursor: pointer;
+    }
+    .flowers {
+      margin-top: 20px;
+      font-size: 1.5em;
+      color: #8A2BE2;
+      font-weight: bold;
+    }
+    /* GIFs and Decorative Graphics */
+    .gif-container {
+      margin-top: 30px;
+    }
+    .gif-container img {
+      width: 150px;
+      height: auto;
+      margin: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .heart {
+      position: absolute;
+      font-size: 2em;
+      animation: float 5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Katarina (Kitkat), will you be my Valentine? 💖</h1>
+    
+    <div class="button-container">
+      <button class="yes" id="yesButton">Yes</button>
+      <button class="no" id="noButton">No</button>
+    </div>
+
+    <!-- Date Ideas Section (hidden until Yes is clicked) -->
+    <div class="date-options" id="dateOptions">
+      <h2>Awesome! Let’s plan our perfect day:</h2>
+      <ul class="option-list">
+        <li>🍽️ A cozy dinner together</li>
+        <li>🍦 Froyo & Ice Cream date</li>
+        <li>☕ Hot Coco & Coffee moments</li>
+        <li>🍭 Sweets & refreshing drinks</li>
+      </ul>
+      <div class="gift-option">
+        Would you like gifts? 
+        <label><input type="radio" name="gifts" value="yes"> Yes</label>
+        <label><input type="radio" name="gifts" value="no"> No</label>
+      </div>
+      <div class="flowers">
+        And remember… flowers are <span style="color:#6A5ACD;">NON NEGOTIABLE</span>!
+      </div>
+    </div>
+    
+    <!-- Cute Cat and Panda GIFs -->
+    <div class="gif-container">
+      <img src="https://media.giphy.com/media/J1ABRhlfvQNwIOsDmn/giphy.gif" alt="Cute Cat">
+      <img src="https://media.giphy.com/media/5ftsmLIqktHQA/giphy.gif" alt="Cute Panda">
+    </div>
+    
+    <!-- Floating Decorative Hearts -->
+    <div class="heart" style="top:10%; left:5%;">❤️</div>
+    <div class="heart" style="top:20%; right:10%;">❤️</div>
+    <div class="heart" style="bottom:15%; left:20%;">❤️</div>
+    <div class="heart" style="bottom:10%; right:15%;">❤️</div>
+  </div>
+
+  <script>
+    // Make the "No" button dodge the mouse cursor
+    const noButton = document.getElementById("noButton");
+    noButton.addEventListener("mouseover", function() {
+      // Get the container dimensions
+      const container = document.querySelector('.container');
+      const containerRect = container.getBoundingClientRect();
+      const maxX = containerRect.width - noButton.offsetWidth;
+      const maxY = containerRect.height - noButton.offsetHeight;
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+      noButton.style.left = randomX + "px";
+      noButton.style.top = randomY + "px";
+    });
+
+    // Show the date ideas when "Yes" is clicked
+    const yesButton = document.getElementById("yesButton");
+    const dateOptions = document.getElementById("dateOptions");
+    yesButton.addEventListener("click", function() {
+      dateOptions.style.display = "block";
+      // Optionally hide the initial buttons after clicking Yes
+      document.querySelector('.button-container').style.display = "none";
+    });
+  </script>
+</body>
+</html>
+
