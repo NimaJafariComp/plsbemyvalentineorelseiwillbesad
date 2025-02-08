@@ -45,30 +45,31 @@
     /* ----- Landing Page ----- */
     #landingPage {
       position: relative;
+      font-size: 6vw;
       z-index: 1;
       text-align: center;
-      padding: 45px 20px 20px;;
+      padding: 20px 20px 20px;
     }
     #landingPage h1 {
-      font-size: 2.5em;
-      margin-top: 45px;
+      font-size: 3vw;
+      margin-top: 40px;
     }
     /* Use a reliable placeholder image for the KitKat chocolate bar.
        Replace the URL with your preferred image if needed. */
     #landingPage img.kitkat {
-      max-width: 400px;
-      width: 80%;
+      max-width: 300px;
+      width: 70%;
       display: block;
-      margin: 8px auto;
+      margin: auto;
     }
     .button-container {
       position: relative;
-      margin: 20px;
+      margin: 0px;
     }
     .btn {
       padding: 15px 25px;
-      margin: 10px;
-      font-size: 1.2em;
+      margin: 0px;
+      font-size: 1vw;
       background: #732f85;
       color: #fff;
       border: none;
@@ -89,7 +90,9 @@
       position: fixed;
       bottom: 10px;
       left: -250px;
-      width: 200px;
+      width: 100%; /* Full width */
+      max-width: 200px; /* Limit max width */
+      height: auto; /* Maintain aspect ratio */
       animation: catRun 6s linear infinite;
       z-index: 2;
     }
@@ -108,7 +111,9 @@
       position: fixed;
       top: 20px;
       left: 20px;
-      width: 300px;
+      width: 100%; /* Full width */
+      max-width: 300px; /* Limit max width */
+      height: auto; /* Maintain aspect ratio */
       animation: pandaBounce 4s ease-in-out infinite;
       z-index: 2;
     }
@@ -121,7 +126,9 @@
       position: fixed;
       top: 20px;
       right: 20px;
-      width: 300px;
+      width: 100%; /* Full width */
+      max-width: 300px; /* Limit max width */
+      height: auto; /* Maintain aspect ratio */
       animation: kittenDance 3s ease-in-out infinite;
       z-index: 2;
     }
@@ -138,7 +145,7 @@
       padding: 30px 20px 20px;;
     }
     .celebration-form {
-      max-width: 500px;
+      max-width: 50%;
       margin: 20px auto;
       background: rgba(255,255,255,0.9);
       border-radius: 10px;
@@ -152,7 +159,7 @@
     .celebration-form label {
       display: block;
       margin: 10px 0;
-      font-size: 1.1em;
+      font-size: 1vw;
     }
     .celebration-form input[type="text"] {
       width: 100%;
@@ -162,8 +169,9 @@
       border: 1px solid #ccc;
     }
     .celebration-form button {
-      padding: 10px 20px;
-      font-size: 1em;
+      width: 100%; /* Full width button */
+      padding: 10px 20px; /* Increased padding for touch targets */
+      font-size: 1vw; /* Responsive font size */
       background: #9370DB;
       color: #fff;
       border: none;
@@ -184,7 +192,7 @@
     #finalPage h1 {
       margin-bottom: 20px;
       padding-top: 45px;
-      font-size: 2em;
+      font-size: 2vw;
     }
     .confetti {
       position: absolute;
