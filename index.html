@@ -285,7 +285,7 @@
     /* ----- Floating Hearts Logic ----- */
     const heartsContainer = document.getElementById('hearts-container');
     function createHeart() {
-    const hearts = ["❤", "💖", "💕", "💗", "💓", "💞", "💘"];
+    const hearts = ["❤", "💖", "💕","😻", "💗", "💓", "💞", "💘"];
     const heart = document.createElement('div');
     heart.classList.add('heart');
     heart.textContent = hearts[Math.floor(Math.random() * hearts.length)]; // Random heart emoji
@@ -328,7 +328,7 @@
     function dodgeButton(e) {
       e.preventDefault(); // Prevent the event from triggering a click
 
-      const offset = Math.floor(Math.random() * (60 - 20 + 1)) + 50; // How far away from the Yes button to be
+      const offset = Math.floor(Math.random() * (60 - 20 + 1)) + 35; // How far away from the Yes button to be
       const noWidth = noBtn.offsetWidth;
       const noHeight = noBtn.offsetHeight;
       
@@ -407,7 +407,7 @@
     celebrationPage.style.display = 'block';
     celebrationPage.innerHTML = `
         <div class="celebration-form">
-        <h2>Yay! Let's plan our day, Kat!</h2>
+        <h2>Yay! Let's plan our day!</h2>
         <form id="valentineForm">
             <input type="hidden" name="_replyto" value="nima.jafari.614@my.csun.edu">
             <label><input type="checkbox" name="activity" value="small dinner"> Small Dinner</label>
@@ -419,7 +419,7 @@
             <label><input type="checkbox" name="activity" value="drinks"> Drinks</label>
             <label>
             Gift?
-            <select name="gift">
+            <select name="exchange gift">
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
             </select>
