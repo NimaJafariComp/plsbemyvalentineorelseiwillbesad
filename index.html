@@ -285,7 +285,7 @@
     /* ----- Floating Hearts Logic ----- */
     const heartsContainer = document.getElementById('hearts-container');
     function createHeart() {
-    const hearts = ["❤", "💖", "💕","😻", "💗", "💓", "💞", "💘"];
+    const hearts = ["❤", "💖", "💕","😻", "💗", "💓","💙", "💞", "💘"];
     const heart = document.createElement('div');
     heart.classList.add('heart');
     heart.textContent = hearts[Math.floor(Math.random() * hearts.length)]; // Random heart emoji
@@ -418,7 +418,7 @@
             <label><input type="checkbox" name="activity" value="sweets"> Sweets</label>
             <label><input type="checkbox" name="activity" value="drinks"> Drinks</label>
             <label>
-            Gift?
+            Exchange lil gifts?
             <select name="exchange gift">
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
@@ -426,8 +426,8 @@
             </label>
             <p style="font-weight: bold; color: #D2691E;">Flowers, Kisses, and possibly Gifts are non-negotiable!</p>
             <label>
-            Any other ideas:
-            <input type="text" name="other" placeholder="Your idea here">
+            Or what would be your ideal valentine?
+            <input type="text" name="other" placeholder="write it down">
             </label>
             <button type="submit">Send</button>
         </form>
@@ -470,7 +470,7 @@
       const finalPage = document.getElementById('finalPage');
       finalPage.style.display = 'block';
       finalPage.innerHTML = `
-        <h1>Thx for being such a LOVE-ly Pookie :))))</h1>
+        <h1>Danke for being such a LOVE-ly Pookie :))))</h1>
         <img class="hugg" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Two Cats Hugging">
       `;
       startConfetti();
